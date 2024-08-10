@@ -1,5 +1,5 @@
 defmodule Metaprograming.Math do
-  # {:+, [context: Elixir, import: Kernel], [5, 2]}-
+  # {:+, [context: Elixir, import: Kernel], [5, 2]}
   defmacro say({:+, _, [lhs, rhs]}) do
     quote do
       lhs = unquote(lhs)
@@ -10,7 +10,7 @@ defmodule Metaprograming.Math do
     end
   end
 
-  # {:*, [context: Elixir, import: Kernel], [8, 3]}-
+  # {:*, [context: Elixir, import: Kernel], [8, 3]}
   defmacro say({:*, _, [lhs, rhs]}) do
     quote do
       lhs = unquote(lhs)
