@@ -20,4 +20,18 @@ defmodule Metaprograming.Math do
       result
     end
   end
+
+  defmacro unless(expression, do: block) do
+    # * This Transformation is known as a macro expansion
+    # * The final AST returned from unless is expanded within the caller’s context at compile time.
+    quote do
+      if !unquote(expression), do: unquote(block)
+    end
+  end
 end
+
+# quote do
+#   defmodule MyModule do
+#     def hello, do: "World"
+#   end
+# end
