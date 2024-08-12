@@ -30,6 +30,8 @@ defmodule Metaprograming.Math do
   end
 end
 
+# ast = quote do Math.unless 2 == 5, do: "block entered" end
+
 # quote do
 #   defmodule MyModule do
 #     def hello, do: "World"
