@@ -1,7 +1,7 @@
 defmodule Mod do
   defmacro definfo do
     # dbg(__ENV__)
-    # * Returns the Macro's definition context
+    # note: critical Returns the Macro's definition context
     IO.puts("In macro's context (#{__MODULE__}).")
     # * Some additional information about the definition context
     # IO.puts("""
@@ -10,7 +10,7 @@ defmodule Mod do
     # """)
 
     quote do
-      # * We are now inside the caller context
+      # note: We are now inside the caller context
       IO.puts("In caller's context (#{__MODULE__}).")
 
       def friendly_info do
