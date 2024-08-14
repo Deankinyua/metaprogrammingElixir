@@ -37,13 +37,18 @@ end
 #     end
 #   end)
 
-# defmodule Setter do
-#   defmacro bind_name(string) do
-#     quote do
-#       var!(name) = unquote(string)
-#     end
-#   end
-# end
+defmodule Setter do
+  defmacro bind_name(string) do
+    quote do
+      var!(name) = unquote(string)
+    end
+  end
+end
+
+# * By using var!, we were able to override hygiene to rebind name to a new value
+
+# name = "chris"
+# Setter.bind_name("Max")
 
 defmodule Hygiene do
   defmacro no_interference do
