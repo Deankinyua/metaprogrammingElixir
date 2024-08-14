@@ -30,9 +30,33 @@ end
 
 # ast =(
 #   quote do
-#     if meaning_to_life == 42 do
+#     if var!(meaning_to_life) == 42 do
 #       "it's true"
 #     else
 #       "it remains to be seen"
 #     end
 #   end)
+
+# defmodule Setter do
+#   defmacro bind_name(string) do
+#     quote do
+#       var!(name) = unquote(string)
+#     end
+#   end
+# end
+
+defmodule Hygiene do
+  defmacro no_interference do
+    quote do
+      a = 1
+    end
+  end
+end
+
+defmodule NoHygiene do
+  defmacro interference do
+    quote do
+      var!(a) = 1
+    end
+  end
+end
