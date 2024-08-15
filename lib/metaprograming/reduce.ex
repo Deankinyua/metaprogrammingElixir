@@ -33,4 +33,31 @@ defmodule Metaprograming.Reduce do
   # * acc is now 3
   # * third return is 3 + 3 = 6
   # * acc is 6 and the final answer is also 6
+
+  def eager(enumerable) do
+    enumerable
+    |> Enum.map(&IO.inspect(&1))
+    |> Enum.map(&(&1 * 2))
+    |> Enum.map(&IO.inspect(&1))
+  end
+
+  # * Note that we first printed each element in the list,
+  # * then multiplied each element by 2 and finally printed each new value.
+  # * In this example, the list was enumerated three times.
+
+  def lazy(enumerable) do
+    stream =
+      enumerable
+      |> Stream.map(&IO.inspect(&1))
+      |> Stream.map(&(&1 * 2))
+      |> Stream.map(&IO.inspect(&1))
+
+    Enum.to_list(stream)
+  end
+
+  # * Although the end result is the same, the order in which the elements were printed changed!
+  # * With streams, we print the first element and then print its double.
+  # * In this example, the list was enumerated just once!
+  # note: Use streams for large or infinite collections as stream computations are kept lazy
+  # note: The computations are only performed when you call a function from the Enum module.
 end
