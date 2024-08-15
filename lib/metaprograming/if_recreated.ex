@@ -10,4 +10,18 @@ defmodule Metaprograming.IfRecreated do
       end
     end
   end
+
+  def iffer(name) do
+    if name == "dean" do
+      true
+    else
+      false
+    end
+  end
+
+  # IfRecreated.my_if 10 == 1 do
+  #   "correct"
+  # else
+  #   "incorrect"
+  # end
 end
