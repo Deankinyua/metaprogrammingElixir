@@ -1,6 +1,10 @@
 defmodule Metaprograming.IfRecreated do
   # * Extend Elixir with MetaProgramming chapter 2 of Elixir in Action
-  defmacro my_if(expr, do: if_block), do: if(expr, do: if_block, else: nil)
+  defmacro my_if(expr, do: if_block) do
+    quote do
+      if(unquote(expr), do: unquote(if_block), else: unquote(nil))
+    end
+  end
 
   defmacro my_if(expr, do: if_block, else: else_block) do
     quote do
@@ -24,4 +28,10 @@ defmodule Metaprograming.IfRecreated do
   # else
   #   "incorrect"
   # end
+
+  # note: Pattern matching is key
+
+  # IfRecreated.my_if 5 == 5, do: "correct", else: "incorrect"
+  # IfRecreated.my_if 6 == 5, do: "correct"
+  # IfRecreated.my_if 5 == 5, do: "correct", else: "incorrect"
 end
