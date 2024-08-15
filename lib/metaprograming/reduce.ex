@@ -11,6 +11,13 @@ defmodule Metaprograming.Reduce do
     enumerable
     |> Enum.reduce([], fn x, acc -> [fun.(x) | acc] end)
     |> Enum.reverse()
+
+    # * assuming enumerable is [1, 2, 3] and fun is &(&1 * 2)
+    # * first return is [2 | []] => [2]
+    # * second return is [4 | [2]] => [4, 2]
+    # * third return is [6 | [4, 2]] => [6, 4, 2]
+
+    # * the result is then reversed with Enum.reverse/1 hence becomes => [2, 4, 6]
   end
 
   def map(enumerable, fun) do
