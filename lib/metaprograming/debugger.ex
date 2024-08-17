@@ -1,6 +1,7 @@
 defmodule Metaprograming.Debugger do
   # note: exploring the importance of bind_quoted
   defmacro log(expression) do
+    # * gets the value for the key :log_level
     if Application.get_env(:debugger, :log_level) == :debug do
       quote do
         IO.puts("=================")
@@ -13,7 +14,6 @@ defmodule Metaprograming.Debugger do
     end
   end
 end
-
 
 # note: The following quoted expressons are equivalent
 # quote bind_quoted: [operator: operator, lhs: lhs, rhs: rhs] do
