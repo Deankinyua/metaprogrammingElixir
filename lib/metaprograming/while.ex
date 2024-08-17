@@ -23,6 +23,7 @@ defmodule Metaprograming.While do
   def break, do: throw(:break)
 end
 
+# * The function runs for 5 seconds 4000 + 1000
 # run_loop = fn ->
 #   pid = spawn(fn -> :timer.sleep(4000) end)
 
@@ -31,3 +32,17 @@ end
 #     :timer.sleep(1000)
 #   end
 # end
+
+# pid =
+#   spawn(fn ->
+#     While.while true do
+#       receive do
+#         :stop ->
+#           IO.puts("Stopping...")
+#           While.break
+
+#         message ->
+#           IO.puts("Got #{inspect(message)}")
+#       end
+#     end
+#   end)
