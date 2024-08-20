@@ -6,7 +6,7 @@ defmodule Metaprograming.Debugger do
   # * see compile_env!/2 instead.
   defmacro log(expression) do
     # * gets the value for the key :log_level of the application debugger
-    # * The function call remote_api_call.() will be evoked twice
+    # * The function call remote_api_call.() will be evoked once
     if Application.get_env(:debugger, :log_level) == :debug do
       quote bind_quoted: [expression: expression] do
         IO.puts("=================")
