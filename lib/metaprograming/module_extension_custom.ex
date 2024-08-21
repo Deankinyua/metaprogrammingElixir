@@ -15,6 +15,6 @@ defmodule MathTest do
   # * passing the second argument of use as the argument to SomeModule.__using__/1
 
   # Since __using__/1 is typically a macro, all the usual macro rules apply,
-  #  and its return value should be quoted code that is then inserted where use/2 is called.
+  # and its return value should be quoted code that is then inserted where use/2 is called.
   use AssertionExtension
 end
