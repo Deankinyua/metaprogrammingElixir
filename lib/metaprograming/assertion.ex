@@ -27,6 +27,8 @@ defmodule Assertion1.Test do
   end
 
   def assert(:==, lhs, rhs) do
+    # * IO.puts => Writes item to the given device, similar to IO.write/2,
+    # * but adds a newline at the end.
     IO.puts("""
     FAILURE:
 
