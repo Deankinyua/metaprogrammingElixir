@@ -1,14 +1,14 @@
-defmodule Metaprograming.Assertion do
+defmodule Assertion do
   # note: Building a mini testing framework in Elixir
-  # {:==, [context: Elixir, import: Kernel], [5, 5]}
   # * bind_quoted option passes a binding to the block, ensuring
   # * that the outside bound variables are unquoted only a single time.
 
   # * The goal for our assert macro is to accept a left-hand side and right-hand side
   # * expression, separated by an Elixir operator, such as assert 1 > 0.
+  # {:==, [context: Elixir, import: Kernel], [5, 5]}
   defmacro assert({operator, _, [lhs, rhs]}) do
     quote bind_quoted: [operator: operator, lhs: lhs, rhs: rhs] do
-      Assertion1.Test.assert(operator, lhs, rhs)
+      Assertion.Test.assert(operator, lhs, rhs)
     end
   end
 end
@@ -21,7 +21,7 @@ end
 
 # * try to think about how pattern matching can help guide your implementation.
 
-defmodule Assertion1.Test do
+defmodule Assertion.Test do
   def assert(:==, lhs, rhs) when lhs == rhs do
     IO.write(".")
   end

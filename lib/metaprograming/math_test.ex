@@ -1,5 +1,5 @@
 defmodule Metaprograming.MathTest do
-  import Metaprograming.Assertion
+  import Assertion
 
   def run do
     assert 5 == 15
