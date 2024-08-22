@@ -1,13 +1,8 @@
 defmodule Mod do
   defmacro definfo do
     # dbg(__ENV__)
-    # note: critical Returns the Macro's definition context
+    # note: Returns the Macro's definition context
     IO.puts("In macro's context (#{__MODULE__}).")
-    # * Some additional information about the definition context
-    # IO.puts("""
-    # Definition context of the macro is #{__MODULE__}
-    # The macros in definition are #{inspect(__MODULE__.__info__(:macros))}
-    # """)
 
     quote do
       # note: We are now inside the caller context

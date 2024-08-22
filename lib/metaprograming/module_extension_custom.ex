@@ -1,4 +1,8 @@
 defmodule AssertionExtension do
+  @moduledoc """
+  When you Use ```AssertionExtension```, the AssertionExtension module will
+  inject a run/0 function into the caller that outputs ```running the tests```
+  """
   defmacro __using__(_options) do
     quote do
       import unquote(__MODULE__)
