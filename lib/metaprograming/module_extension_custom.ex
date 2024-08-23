@@ -26,6 +26,7 @@ end
 defmodule MathTestExtension do
   # * use SomeModule simply invokes the SomeModule.__using__/1 macro
   # * passing the second argument of use as the argument to SomeModule.__using__/1
+  # * MathTestExtension takes the AssertionExtension as its input - Meaning of Metaprogramming
 
   use AssertionExtension
   import Assertion

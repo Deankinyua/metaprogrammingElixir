@@ -1,5 +1,5 @@
 defmodule Metaprograming.IfRecreated do
-  # * Extend Elixir with MetaProgramming chapter 2 of Elixir in Action
+  # * Extend Elixir with MetaProgramming chapter 2 of Metaprogramming Elixir
   defmacro my_if(expr, do: if_block) do
     quote do
       if(unquote(expr), do: unquote(if_block), else: unquote(nil))
