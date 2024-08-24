@@ -13,7 +13,7 @@ defmodule Assertion do
   end
 end
 
-# By generating a single line of code on line 10 to proxy to Assertion.Test.assert, we
+# By generating a single line of code on line 10 to proxy to Assertion.Test module, we
 # let the Virtual Machine’s pattern matching take over to report the result of
 # each assertion.
 

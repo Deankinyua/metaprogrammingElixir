@@ -11,8 +11,9 @@ defmodule AssertionExtension do
     end
   end
 
-  # ? Next,we defined a test macro, which first converts the test-case
+  # ? Next,we defined The test macro, which first converts the test-case
   # ? description to an atom so that it can serve as a valid function name.
+
   defmacro test(description, do: test_block) do
     test_func = String.to_atom(description)
 
