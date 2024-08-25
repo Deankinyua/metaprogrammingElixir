@@ -30,3 +30,11 @@ end
 # quote do
 #   Assertion.Test.assert(unquote(operator), unquote(lhs), unquote(rhs))
 # end
+
+# try do
+#   raise "ooops"
+# rescue
+#   e ->
+#     Logger.error(Exception.format(:error, e, __STACKTRACE__))
+#     reraise e, __STACKTRACE__
+# end
