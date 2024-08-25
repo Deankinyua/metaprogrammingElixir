@@ -1,27 +1,26 @@
-defmodule Assertion do
-  # note: Building a mini testing framework in Elixir
-  # * bind_quoted option passes a binding to the block, ensuring
-  # * that the outside bound variables are unquoted only a single time.
-
-  # * The goal for our assert macro is to accept a left-hand side and right-hand side
-  # * expression, separated by an Elixir operator, such as assert 1 > 0.
-  # {:==, [context: Elixir, import: Kernel], [5, 5]}
-  defmacro assert({operator, _, [lhs, rhs]}) do
-    quote bind_quoted: [operator: operator, lhs: lhs, rhs: rhs] do
-      Assertion.Test.assert(operator, lhs, rhs)
-    end
-  end
-end
-
-# By generating a single line of code on line 10 to proxy to Assertion.Test module, we
-# let the Virtual Machine’s pattern matching take over to report the result of
-# each assertion.
-
-# * Proxy - give someone authority to do a task for you
-
-# * try to think about how pattern matching can help guide your implementation.
-
 defmodule Assertion.Test do
+  # note: Building a mini testing framework in Elixir
+
+  # * Proxy - give someone authority to do a task for you
+
+  def run(tests, module) do
+    Enum.each(tests, fn {test_func, description} ->
+      case apply(module, test_func, []) do
+        :ok ->
+          IO.write(".")
+
+        {:fail, reason} ->
+          IO.puts("""
+
+          ===============================================
+          FAILURE: #{description}
+          ===============================================
+          #{reason}
+          """)
+      end
+    end)
+  end
+
   def assert(:==, lhs, rhs) when lhs == rhs do
     IO.write(".")
   end
