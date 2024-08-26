@@ -47,4 +47,53 @@ defmodule Assertion.Test do
     to be greater than: #{rhs}
     """)
   end
+
+  def assert(:<, lhs, rhs) when lhs < rhs do
+    IO.write(".")
+  end
+
+  def assert(:<, lhs, rhs) do
+    IO.puts("""
+    FAILURE:
+    Expected: #{lhs}
+    to be Less than: #{rhs}
+    """)
+  end
+
+  def refute(:==, lhs, rhs) when lhs == rhs do
+    IO.puts("""
+    FAILURE:
+
+    Expected: #{lhs}
+    to be not equal to: #{rhs}
+    """)
+  end
+
+  def refute(:==, _lhs, _rhs) do
+    IO.write(".")
+  end
+
+  def refute(:>, lhs, rhs) when lhs > rhs do
+    IO.puts("""
+    FAILURE:
+    Expected: #{lhs}
+    to be not greater than: #{rhs}
+    """)
+  end
+
+  def refute(:>, _lhs, _rhs) do
+    IO.write(".")
+  end
+
+  def refute(:<, lhs, rhs) when lhs < rhs do
+    IO.puts("""
+    FAILURE:
+    Expected: #{lhs}
+    to be not Less than: #{rhs}
+    """)
+  end
+
+  def refute(:<, _lhs, _rhs) do
+    IO.write(".")
+  end
 end

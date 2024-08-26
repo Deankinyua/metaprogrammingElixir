@@ -38,6 +38,14 @@ defmodule AssertionExtension do
       Assertion.Test.assert(operator, lhs, rhs)
     end
   end
+
+  defmacro refute({operator, _, [lhs, rhs]}) do
+    # * bind_quoted option passes a binding to the block, ensuring
+    # * that the outside bound variables are unquoted only a single time.
+    quote bind_quoted: [operator: operator, lhs: lhs, rhs: rhs] do
+      Assertion.Test.refute(operator, lhs, rhs)
+    end
+  end
 end
 
 defmodule MathTestExtension do
@@ -49,6 +57,13 @@ defmodule MathTestExtension do
   test "integers can be added and subtracted" do
     assert 2 + 3 == 5
     assert 5 - 5 == 10
+    assert 4 ** 4 < 250
+  end
+
+  test "integers cannot be added and subtracted" do
+    refute 2 + 3 == 5
+    refute 5 - 5 == 10
+    refute 4 ** 4 < 260
   end
 
   test "integers can be multiplied and divided" do
