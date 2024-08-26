@@ -12,6 +12,9 @@ defmodule Metaprograming.Errors do
         Logger.error(Exception.format(:error, e, __STACKTRACE__))
         reraise e, __STACKTRACE__
     end
+
+    # we rescued the exception, logged it, and then re-raised it.
+    # We use the __STACKTRACE__ construct both when formatting the exception and when re-raising
   end
 
   # * Throws are used for control flow in situations where
@@ -34,6 +37,41 @@ defmodule Metaprograming.Errors do
       exit("I am exiting")
     catch
       :exit, message -> message
+    end
+  end
+
+  # Sometimes it's necessary to ensure that a resource is cleaned up
+  #  after some action that could potentially raise an error.
+
+  def afterfunc do
+    {:ok, file} = File.open("sample", [:utf8, :write])
+
+    try do
+      IO.write(file, "olá")
+
+      raise "oops, something went wrong"
+
+      # The after clause will be executed regardless of whether or not the tried block succeeds
+    after
+      File.close(file)
+    end
+  end
+
+  # will match on the results of the try block whenever the try block
+  # finishes without a throw or an error.
+
+  def elsefunc(x) do
+    try do
+      1 / x
+    rescue
+      ArithmeticError ->
+        :infinity
+    else
+      y when y < 1 and y > -1 ->
+        :small
+
+      _ ->
+        :large
     end
   end
 end
