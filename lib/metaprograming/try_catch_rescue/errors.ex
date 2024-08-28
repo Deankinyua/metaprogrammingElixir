@@ -74,4 +74,26 @@ defmodule Metaprograming.Errors do
         :large
     end
   end
+
+  def returnpath do
+    __DIR__
+  end
 end
+
+# ? Demystifying iodata in elixir
+# lists of bytes and binaries.
+
+#  IO.iodata_to_binary([65,66])
+# "AB"
+#  IO.iodata_to_binary("AB")
+# "AB"
+#  IO.iodata_to_binary(<<65,66>>)
+# "AB"
+# IO.iodata_to_binary([65,66,"CD"])
+# "ABCD"
+#  IO.iodata_to_binary([65,66,"CD", <<69, 70, 71>>])
+# "ABCDEFG"
+
+# the main use for IOData is to avoid unnecessary memory allocation and copying.
+
+# IO.puts ["Good morning, ", user]
