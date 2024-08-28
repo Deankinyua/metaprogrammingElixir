@@ -12,7 +12,6 @@ defmodule Mime do
   def valid_type?(type), do: exts_from_type(type) |> Enum.any?()
 end
 
-
 # "Dean kamanu kinyua"
 
 # "application/javascript .js"
