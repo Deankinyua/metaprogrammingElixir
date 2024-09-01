@@ -1,5 +1,7 @@
 defmodule Mime do
-  for line <- File.stream!(Path.join([__DIR__, "mimes.txt"]), [], :line) do
+  @external_resource mimes_path = Path.join([__DIR__, "mimes.txt"])
+
+  for line <- File.stream!(mimes_path, [], :line) do
     [type, rest] = line |> String.split() |> Enum.map(&String.trim(&1))
     extensions = String.split(rest)
 
@@ -14,5 +16,11 @@ end
 
 # "Dean kamanu kinyua"
 
-# "application/javascript .js"
 # "hahahha jajajja  jsjjsjjsj kakka "
+# ? Using Unquote Fragments to dynamically make function definitions at compile time
+
+defmodule Fragments do
+  for {name, val} <- [one: 1, two: 2, three: 3] do
+    def unquote(name)(), do: unquote(val)
+  end
+end

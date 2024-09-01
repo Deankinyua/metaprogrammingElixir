@@ -3,6 +3,9 @@ defmodule Metaprograming.While do
 
   alias Metaprograming.While
 
+  @spec while(any(), [{:do, any()}, ...]) ::
+          {:try, [{:do, [...]} | {:end, [...]} | {:end_of_expression, [...]}, ...],
+           [[{any(), any()}, ...], ...]}
   defmacro while(expression, do: block) do
     quote do
       try do
